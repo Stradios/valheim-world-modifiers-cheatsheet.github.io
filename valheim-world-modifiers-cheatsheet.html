@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Valheim World Modifiers – Console Command Cheat Sheet</title>
+<style>
+  :root{
+    --bg:#0f1115; --card:#171a21; --text:#e6e6e6; --muted:#a7a7a7;
+    --accent:#7aa2ff; --accent2:#4fd1c5; --border:#252a33;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
+  header{padding:28px 20px 10px; text-align:center}
+  h1{margin:0 0 6px; font-size:clamp(24px,4vw,34px); letter-spacing:.3px}
+  p.subtitle{margin:0;color:var(--muted)}
+  main{max-width:1100px;margin:22px auto;padding:0 16px 40px}
+  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin:14px 0;box-shadow:0 10px 30px rgb(0 0 0 / .25)}
+  h2{margin:0 0 8px;font-size:clamp(18px,2.6vw,22px); color:var(--accent)}
+  h3{margin:18px 0 8px;font-size:18px;color:var(--accent2)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
+  .cmd{position:relative;background:#0b0d12;border:1px solid var(--border);border-radius:12px;padding:12px 12px 10px;margin:10px 0}
+  .cmd pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:13.5px;line-height:1.45}
+  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .btn{cursor:pointer;background:transparent;border:1px solid var(--accent);color:var(--text);padding:8px 12px;border-radius:10px;font-weight:600}
+  .btn:hover{background:rgb(122 162 255 / .12)}
+  .small{font-size:12.5px;color:var(--muted)}
+  table{width:100%;border-collapse:collapse;margin-top:10px}
+  th,td{border-bottom:1px solid var(--border);padding:10px 8px;text-align:left;vertical-align:top}
+  th{color:var(--muted);font-weight:600}
+  code.k{background:#0b0d12;padding:2px 6px;border:1px solid var(--border);border-radius:8px}
+  footer{max-width:1100px;margin:20px auto 60px;color:var(--muted);padding:0 16px}
+  .pill{display:inline-block;padding:2px 10px;border:1px solid var(--border);border-radius:999px;background:#0b0d12;color:var(--muted);margin-left:6px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Valheim World Modifiers – Console Command Cheat Sheet</h1>
+  <p class="subtitle">Use these <code>setkey</code>, <code>removekey</code>, and utility commands to tweak a world. Enable console and cheats first.</p>
+</header>
+
+<main>
+
+  <div class="card">
+    <h2>Before You Start</h2>
+    <div class="grid">
+      <div>
+        <h3>Enable Console (game setting)</h3>
+        <div class="cmd"><pre>Options → Misc → Enable Console</pre></div>
+      </div>
+      <div>
+        <h3>Open Console & Enable Cheats</h3>
+        <div class="cmd"><pre>F5
+devcommands</pre></div>
+        <p class="small">If successful, the console prints that devcommands are enabled.</p>
+      </div>
+      <div>
+        <h3>Useful Listing/Reset</h3>
+        <div class="cmd"><pre>listkeys        <span class="small"># show all keys set for this world</span>
+removekey &lt;Key&gt; <span class="small"># remove a single key</span>
+resetkeys       <span class="small"># remove all custom keys</span></pre></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Quick Toggles</h2>
+    <div class="grid">
+      <div>
+        <h3>Infinite Stamina</h3>
+        <div class="cmd"><pre>setkey StaminaRate 0</pre></div>
+        <button class="btn" data-copy="setkey StaminaRate 0">Copy</button>
+        <div class="cmd"><pre>removekey StaminaRate</pre></div>
+        <button class="btn" data-copy="removekey StaminaRate">Copy</button>
+      </div>
+      <div>
+        <h3>Free Crafting</h3>
+        <div class="cmd"><pre>setkey NoCraftCost true</pre></div>
+        <button class="btn" data-copy="setkey NoCraftCost true">Copy</button>
+        <div class="cmd"><pre>removekey NoCraftCost</pre></div>
+        <button class="btn" data-copy="removekey NoCraftCost">Copy</button>
+      </div>
+      <div>
+        <h3>Disable Raids (Events)</h3>
+        <div class="cmd"><pre>setkey NoRaids true</pre></div>
+        <button class="btn" data-copy="setkey NoRaids true">Copy</button>
+        <div class="cmd"><pre>removekey NoRaids</pre></div>
+        <button class="btn" data-copy="removekey NoRaids">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Categorized Reference</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Effect</th>
+          <th>Enable (Set)</th>
+          <th>Disable (Remove)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Crafting/Building</strong></td>
+          <td>Free crafting (no materials)</td>
+          <td><code class="k">setkey NoCraftCost true</code></td>
+          <td><code class="k">removekey NoCraftCost</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Free build/repair</td>
+          <td><code class="k">setkey NoBuildCost true</code></td>
+          <td><code class="k">removekey NoBuildCost</code></td>
+        </tr>
+        <tr>
+          <td><strong>Player</strong></td>
+          <td>Infinite stamina</td>
+          <td><code class="k">setkey StaminaRate 0</code></td>
+          <td><code class="k">removekey StaminaRate</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Double carry weight</td>
+          <td><code class="k">setkey CarryWeight 2</code></td>
+          <td><code class="k">removekey CarryWeight</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Disable auto-pickup</td>
+          <td><code class="k">setkey NoAutoPickup true</code></td>
+          <td><code class="k">removekey NoAutoPickup</code></td>
+        </tr>
+        <tr>
+          <td><strong>Combat</strong></td>
+          <td>Passive enemies (won't attack first)</td>
+          <td><code class="k">setkey PassiveMobs true</code></td>
+          <td><code class="k">removekey PassiveMobs</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Disable raids/events</td>
+          <td><code class="k">setkey NoRaids true</code></td>
+          <td><code class="k">removekey NoRaids</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Harder combat</td>
+          <td><code class="k">setkey CombatDifficulty Hard</code></td>
+          <td><code class="k">removekey CombatDifficulty</code></td>
+        </tr>
+        <tr>
+          <td><strong>World/Exploration</strong></td>
+          <td>Reveal full map</td>
+          <td><code class="k">setkey ExploreMap true</code></td>
+          <td><code class="k">removekey ExploreMap</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>No minimap</td>
+          <td><code class="k">setkey NoMiniMap true</code></td>
+          <td><code class="k">removekey NoMiniMap</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>No map at all</td>
+          <td><code class="k">setkey NoMap true</code></td>
+          <td><code class="k">removekey NoMap</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Disable portals</td>
+          <td><code class="k">setkey NoPortals true</code></td>
+          <td><code class="k">removekey NoPortals</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Allow everything through portals</td>
+          <td><code class="k">setkey FreePortals true</code></td>
+          <td><code class="k">removekey FreePortals</code></td>
+        </tr>
+        <tr>
+          <td><strong>Skills</strong></td>
+          <td>Fast skill gain</td>
+          <td><code class="k">setkey SkillGain Fast</code></td>
+          <td><code class="k">removekey SkillGain</code></td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>Very fast skill gain</td>
+          <td><code class="k">setkey SkillGain VeryFast</code></td>
+          <td><code class="k">removekey SkillGain</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="small">Note: Keys are world-specific. Availability/behavior can vary with game version or mods. Use <code>listkeys</code> to inspect what's currently active.</p>
+  </div>
+
+  <div class="card">
+    <h2>🔑 Dev Commands for Loot Modifiers (World Keys)</h2>
+    <table>
+      <thead><tr><th>Command</th><th>Effect</th></tr></thead>
+      <tbody>
+        <tr><td><code class="k">setkey LootDrop 0</code></td><td>Default loot drop rate (100%).</td></tr>
+        <tr><td><code class="k">setkey LootDrop 1</code></td><td>Double loot (200%).</td></tr>
+        <tr><td><code class="k">setkey LootDrop 2</code></td><td>Triple loot (300%).</td></tr>
+        <tr><td><code class="k">setkey LootDrop 3</code></td><td>Quadruple loot (400%).</td></tr>
+        <tr><td><code class="k">resetkeys LootDrop</code></td><td>Resets to default loot modifier.</td></tr>
+        <tr><td><code class="k">getkey LootDrop</code></td><td>Shows current loot drop setting.</td></tr>
+      </tbody>
+    </table>
+
+    <h2>📋 Example Usage</h2>
+    <div class="cmd"><pre>setkey LootDrop 2
+
+➡ All creatures drop triple loot.</pre></div>
+    <div class="cmd"><pre>resetkeys LootDrop
+
+➡ Back to normal loot rate.</pre></div>
+  </div>
+
+</main>
+
+<footer>
+  <p>Made for quick in-game copy/paste. Keep this page open on a second monitor. <span class="pill">F5</span> opens the console in Valheim.</p>
+</footer>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', async () => {
+      const text = btn.getAttribute('data-copy');
+      try {
+        await navigator.clipboard.writeText(text);
+        const old = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(()=>btn.textContent = old, 1200);
+      } catch (e) {
+        alert('Could not copy to clipboard. You can copy manually.');
+      }
+    });
+  });
+</script>
+</body>
+</html>
