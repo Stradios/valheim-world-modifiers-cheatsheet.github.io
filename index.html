@@ -1,243 +1,1049 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Valheim World Modifiers – Console Command Cheat Sheet</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valheim World Modifiers Cheatsheet — Nort-Sun</title>
+<link rel="icon" href="https://raw.githubusercontent.com/Stradios/Nort-sun-esentials/refs/heads/main/NORT-SUN_%20Soluppg%C3%A5ng%20bakom%20berg512x512.png">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://stradios.github.io/valheim-world-modifiers-cheatsheet.github.io/">
+<meta property="og:title" content="Valheim World Modifiers Cheatsheet — Nort-Sun">
+<meta property="og:description" content="A quick-reference cheatsheet for all Valheim world modifier commands. Part of the Nort-Sun Gaming Community.">
+<meta property="og:image" content="https://raw.githubusercontent.com/Stradios/Nort-sun-esentials/refs/heads/main/Nort-sun%20images/NORT-SUN_%20Soluppg%C3%A5ng%20bakom%20berg1920x284.png">
+
 <style>
-  :root{
-    --bg:#0f1115; --card:#171a21; --text:#e6e6e6; --muted:#a7a7a7;
-    --accent:#7aa2ff; --accent2:#4fd1c5; --border:#252a33;
+  :root {
+    --bg:       #080c14;
+    --bg2:      #0d1220;
+    --sun:      #f97316;
+    --sunbright:#fbbf24;
+    --sundeep:  #c2410c;
+    --peak:     #e2e8f0;
+    --text:     #d4d8e2;
+    --muted:    #6b7280;
+    --card:     rgba(255,255,255,0.035);
+    --border:   rgba(249,115,22,0.18);
+    --viking:   rgba(99,179,237,0.15);
   }
-  *{box-sizing:border-box}
-  html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial,"Noto Sans",sans-serif}
-  header{padding:28px 20px 10px; text-align:center}
-  h1{margin:0 0 6px; font-size:clamp(24px,4vw,34px); letter-spacing:.3px}
-  p.subtitle{margin:0;color:var(--muted)}
-  main{max-width:1100px;margin:22px auto;padding:0 16px 40px}
-  .card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px 16px;margin:14px 0;box-shadow:0 10px 30px rgb(0 0 0 / .25)}
-  h2{margin:0 0 8px;font-size:clamp(18px,2.6vw,22px); color:var(--accent)}
-  h3{margin:18px 0 8px;font-size:18px;color:var(--accent2)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px}
-  .cmd{position:relative;background:#0b0d12;border:1px solid var(--border);border-radius:12px;padding:12px 12px 10px;margin:10px 0}
-  .cmd pre{margin:0;white-space:pre-wrap;word-wrap:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;font-size:13.5px;line-height:1.45}
-  .row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .btn{cursor:pointer;background:transparent;border:1px solid var(--accent);color:var(--text);padding:8px 12px;border-radius:10px;font-weight:600}
-  .btn:hover{background:rgb(122 162 255 / .12)}
-  .small{font-size:12.5px;color:var(--muted)}
-  table{width:100%;border-collapse:collapse;margin-top:10px}
-  th,td{border-bottom:1px solid var(--border);padding:10px 8px;text-align:left;vertical-align:top}
-  th{color:var(--muted);font-weight:600}
-  code.k{background:#0b0d12;padding:2px 6px;border:1px solid var(--border);border-radius:8px}
-  footer{max-width:1100px;margin:20px auto 60px;color:var(--muted);padding:0 16px}
-  .pill{display:inline-block;padding:2px 10px;border:1px solid var(--border);border-radius:999px;background:#0b0d12;color:var(--muted);margin-left:6px}
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Atmospheric background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 30% at 50% 0%, rgba(249,115,22,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(12,16,26,0.9) 0%, transparent 80%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Stars */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 8% 15%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 22% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 38% 12%, rgba(251,191,36,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 70%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 80% 60%, rgba(249,115,22,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 92% 10%, rgba(255,255,255,0.7) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 88%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 48% 40%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 65% 82%, rgba(251,191,36,0.3) 0%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4rem;
+    background: rgba(8,12,20,0.88);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+  }
+
+  .nav-logo img {
+    width: 38px;
+    height: 38px;
+    border-radius: 6px;
+  }
+
+  .nav-logo-text {
+    font-family: 'Orbitron', serif;
+    font-weight: 900;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    color: var(--peak);
+  }
+
+  .nav-logo-text span { color: var(--sun); }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  nav ul a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  nav ul a:hover { color: var(--sunbright); }
+
+  .nav-cta {
+    background: var(--sun) !important;
+    color: var(--bg) !important;
+    padding: 0.45rem 1.1rem !important;
+    border-radius: 4px;
+    font-weight: 700 !important;
+    transition: box-shadow 0.2s, transform 0.2s !important;
+  }
+
+  .nav-cta:hover {
+    box-shadow: 0 0 22px rgba(249,115,22,0.55) !important;
+    transform: translateY(-1px);
+    color: var(--bg) !important;
+  }
+
+  /* ---- BANNER / HERO ---- */
+  .hero {
+    position: relative;
+    padding: 7rem 2rem 3rem;
+    text-align: center;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  .hero-sun-glow {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(249,115,22,0.08) 0%, rgba(251,191,36,0.03) 40%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    animation: pulse 5s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 0.7; transform: translate(-50%,-50%) scale(1); }
+    50% { opacity: 1; transform: translate(-50%,-50%) scale(1.08); }
+  }
+
+  .hero-banner {
+    width: 100%;
+    max-width: 700px;
+    height: auto;
+    margin: 0 auto 1.8rem;
+    display: block;
+    animation: fadeUp 0.9s ease both;
+    filter: drop-shadow(0 0 30px rgba(249,115,22,0.3));
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(249,115,22,0.12);
+    border: 1px solid rgba(249,115,22,0.3);
+    color: var(--sunbright);
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.2rem;
+    animation: fadeUp 0.9s 0.1s ease both;
+  }
+
+  .hero h1 {
+    font-family: 'Orbitron', monospace;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    animation: fadeUp 0.9s 0.2s ease both;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero h1 .line1 { display: block; color: var(--peak); }
+  .hero h1 .line2 {
+    display: block;
+    background: linear-gradient(90deg, var(--sundeep), var(--sun), var(--sunbright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-sub {
+    max-width: 560px;
+    margin: 1rem auto 1.8rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.75;
+    animation: fadeUp 0.9s 0.3s ease both;
+  }
+
+  .hero-sub a { color: var(--sun); text-decoration: none; }
+  .hero-sub a:hover { color: var(--sunbright); }
+
+  /* ---- SEARCH ---- */
+  .search-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 520px;
+    margin: 0 auto 3rem;
+    animation: fadeUp 0.9s 0.4s ease both;
+  }
+
+  .search-wrap input {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.8rem 1rem 0.8rem 2.8rem;
+    color: var(--text);
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .search-wrap input:focus {
+    border-color: var(--sun);
+    box-shadow: 0 0 18px rgba(249,115,22,0.2);
+  }
+
+  .search-wrap input::placeholder { color: var(--muted); }
+
+  .search-icon {
+    position: absolute;
+    left: 0.9rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--muted);
+    font-size: 1rem;
+    pointer-events: none;
+  }
+
+  /* ---- MAIN CONTENT ---- */
+  .content {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 2rem 5rem;
+  }
+
+  /* ---- CATEGORY SECTION ---- */
+  .category {
+    margin-bottom: 3rem;
+  }
+
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .category-icon {
+    font-size: 1.4rem;
+  }
+
+  .category-title {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--peak);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .category-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), transparent);
+  }
+
+  /* ---- MODIFIER GRID ---- */
+  .modifier-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1rem;
+  }
+
+  .modifier-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem 1.4rem;
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    cursor: default;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .modifier-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(249,115,22,0.05) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.25s;
+    border-radius: 12px;
+    pointer-events: none;
+  }
+
+  .modifier-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(0,0,0,0.4);
+    border-color: rgba(249,115,22,0.45);
+  }
+
+  .modifier-card:hover::before { opacity: 1; }
+
+  .modifier-name {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--peak);
+    margin-bottom: 0.35rem;
+    letter-spacing: 0.04em;
+  }
+
+  .modifier-desc {
+    font-size: 0.82rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 0.9rem;
+  }
+
+  .modifier-command {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(0,0,0,0.35);
+    border: 1px solid rgba(249,115,22,0.12);
+    border-radius: 6px;
+    padding: 0.45rem 0.8rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem;
+    color: var(--sunbright);
+    word-break: break-all;
+    position: relative;
+  }
+
+  .copy-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    background: rgba(249,115,22,0.12);
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 4px;
+    color: var(--sun);
+    font-size: 0.7rem;
+    font-family: 'Exo 2', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.55rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .copy-btn:hover {
+    background: rgba(249,115,22,0.28);
+    color: var(--sunbright);
+  }
+
+  .copy-btn.copied {
+    background: rgba(74,222,128,0.15);
+    border-color: rgba(74,222,128,0.3);
+    color: #4ade80;
+  }
+
+  .modifier-values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 0.65rem;
+  }
+
+  .value-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border-radius: 100px;
+    background: rgba(249,115,22,0.1);
+    color: var(--sunbright);
+    border: 1px solid rgba(249,115,22,0.2);
+  }
+
+  .value-tag.blue {
+    background: rgba(99,179,237,0.1);
+    color: #93c5fd;
+    border-color: rgba(99,179,237,0.2);
+  }
+
+  .value-tag.green {
+    background: rgba(74,222,128,0.08);
+    color: #4ade80;
+    border-color: rgba(74,222,128,0.2);
+  }
+
+  .value-tag.red {
+    background: rgba(248,113,113,0.1);
+    color: #f87171;
+    border-color: rgba(248,113,113,0.2);
+  }
+
+  /* ---- HOW TO ---- */
+  .howto-card {
+    background: linear-gradient(135deg, rgba(249,115,22,0.07), rgba(194,65,12,0.04));
+    border: 1px solid rgba(249,115,22,0.25);
+    border-radius: 16px;
+    padding: 2rem 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .howto-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(249,115,22,0.2), transparent, rgba(251,191,36,0.1));
+    z-index: -1;
+  }
+
+  .howto-card h2 {
+    font-family: 'Exo 2', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--peak);
+    margin-bottom: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .howto-steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .howto-step {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--sundeep), var(--sun));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+    margin-top: 1px;
+  }
+
+  .step-text {
+    font-size: 0.83rem;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  .step-text strong { color: var(--text); }
+
+  /* ---- DIVIDER ---- */
+  .divider {
+    position: relative;
+    z-index: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0 0 3rem;
+  }
+
+  /* ---- FOOTER ---- */
+  footer {
+    position: relative;
+    z-index: 1;
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+  }
+
+  footer .nav-logo-text { font-size: 1rem; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--sunbright); }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    nav ul { display: none; }
+    .content { padding: 0 1rem 4rem; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
+    .modifier-grid { grid-template-columns: 1fr; }
+    .howto-card { padding: 1.4rem 1.4rem; }
+    .howto-steps { grid-template-columns: 1fr; }
+  }
+
+  /* hidden by search filter */
+  .modifier-card.hidden { display: none; }
+  .category.empty { display: none; }
 </style>
 </head>
 <body>
-<header>
-  <h1>Valheim World Modifiers – Console Command Cheat Sheet</h1>
-  <p class="subtitle">Use these <code>setkey</code>, <code>removekey</code>, and utility commands to tweak a world. Enable console and cheats first.</p>
-</header>
 
-<main>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <img src="https://raw.githubusercontent.com/Stradios/Nort-sun-esentials/refs/heads/main/Nort-sun%20images/NORT-SUN_Soluppgngbakomberggno512x512.svg" alt="Nort-Sun Logo">
+    <span class="nav-logo-text">NORT<span>-</span>SUN</span>
+  </div>
+  <ul>
+    <li><a href="https://mod.nort-sun.com/">Login</a></li>
+    <li><a href="#servers">Servers</a></li>
+    <li><a href="#communitys">Communitys</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="https://www.nort-sun.com/#about" class="active">About</a></li>
+    <li><a href="#join" class="nav-cta">Join Us</a></li>
+  </ul>
+</nav>
 
-  <div class="card">
-    <h2>Before You Start</h2>
-    <div class="grid">
-      <div>
-        <h3>Enable Console (game setting)</h3>
-        <div class="cmd"><pre>Options → Misc → Enable Console</pre></div>
+<!-- HERO / BANNER -->
+<div class="hero">
+  <div class="hero-sun-glow"></div>
+  <img
+    src="https://raw.githubusercontent.com/Stradios/Nort-sun-esentials/refs/heads/main/Nort-sun%20images/Nort-sun500x300.svg"
+    alt="Nort-Sun Banner"
+    class="hero-banner"
+  >
+  <div class="hero-badge">Nort-Sun · Valheim Resource</div>
+  <h1>
+    <span class="line1">World Modifiers</span>
+    <span class="line2">Cheatsheet</span>
+  </h1>
+  <p class="hero-sub">
+    A quick-reference for all Valheim world modifier commands. Part of the
+    <a href="https://www.nort-sun.com">Nort-Sun Gaming Community</a>.
+  </p>
+
+  <!-- Search -->
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="Search modifiers…" autocomplete="off">
+  </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="content">
+
+  <!-- HOW TO USE -->
+  <div class="howto-card reveal">
+    <h2>⚙️ How to Use World Modifiers</h2>
+    <div class="howto-steps">
+      <div class="howto-step">
+        <div class="step-num">1</div>
+        <div class="step-text"><strong>Open console</strong> — press <code style="color:var(--sunbright);">F5</code> in-game (enable cheats first)</div>
       </div>
-      <div>
-        <h3>Open Console & Enable Cheats</h3>
-        <div class="cmd"><pre>F5
-devcommands</pre></div>
-        <p class="small">If successful, the console prints that devcommands are enabled.</p>
+      <div class="howto-step">
+        <div class="step-num">2</div>
+        <div class="step-text"><strong>Enable cheats</strong> — type <code style="color:var(--sunbright);">devcommands</code> and press Enter</div>
       </div>
-      <div>
-        <h3>Useful Listing/Reset</h3>
-        <div class="cmd"><pre>listkeys        <span class="small"># show all keys set for this world</span>
-removekey &lt;Key&gt; <span class="small"># remove a single key</span>
-resetkeys       <span class="small"># remove all custom keys</span></pre></div>
+      <div class="howto-step">
+        <div class="step-num">3</div>
+        <div class="step-text"><strong>Type the command</strong> — copy any command below and paste it in the console</div>
+      </div>
+      <div class="howto-step">
+        <div class="step-num">4</div>
+        <div class="step-text"><strong>Reload the world</strong> — some modifiers require a world reload to take effect</div>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>Quick Toggles</h2>
-    <div class="grid">
-      <div>
-        <h3>Infinite Stamina</h3>
-        <div class="cmd"><pre>setkey StaminaRate 0</pre></div>
-        <button class="btn" data-copy="setkey StaminaRate 0">Copy</button>
-        <div class="cmd"><pre>removekey StaminaRate</pre></div>
-        <button class="btn" data-copy="removekey StaminaRate">Copy</button>
+  <div class="divider"></div>
+
+  <!-- COMBAT -->
+  <div class="category reveal" data-category="combat">
+    <div class="category-header">
+      <span class="category-icon">⚔️</span>
+      <span class="category-title">Combat</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
+
+      <div class="modifier-card" data-search="combat damage player playerdam">
+        <div class="modifier-name">Player Damage</div>
+        <div class="modifier-desc">Adjust how much damage players deal to enemies.</div>
+        <div class="modifier-command">
+          <span>setkey PlayerDamage &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey PlayerDamage ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">veryhard</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">easy</span>
+          <span class="value-tag green">veryeasy</span>
+        </div>
       </div>
-      <div>
-        <h3>Free Crafting</h3>
-        <div class="cmd"><pre>setkey NoCraftCost true</pre></div>
-        <button class="btn" data-copy="setkey NoCraftCost true">Copy</button>
-        <div class="cmd"><pre>removekey NoCraftCost</pre></div>
-        <button class="btn" data-copy="removekey NoCraftCost">Copy</button>
+
+      <div class="modifier-card" data-search="combat damage enemy mob enemydam">
+        <div class="modifier-name">Enemy Damage</div>
+        <div class="modifier-desc">Change how much damage enemies deal to players.</div>
+        <div class="modifier-command">
+          <span>setkey EnemyDamage &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey EnemyDamage ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">veryhard</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">easy</span>
+          <span class="value-tag green">veryeasy</span>
+        </div>
       </div>
-      <div>
-        <h3>Disable Raids (Events)</h3>
-        <div class="cmd"><pre>setkey NoRaids true</pre></div>
-        <button class="btn" data-copy="setkey NoRaids true">Copy</button>
-        <div class="cmd"><pre>removekey NoRaids</pre></div>
-        <button class="btn" data-copy="removekey NoRaids">Copy</button>
+
+      <div class="modifier-card" data-search="combat health player stamina deathpenalty">
+        <div class="modifier-name">Death Penalty</div>
+        <div class="modifier-desc">Control what you lose on death — skills, items, or nothing.</div>
+        <div class="modifier-command">
+          <span>setkey DeathPenalty &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey DeathPenalty ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">hardcore</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">easy</span>
+          <span class="value-tag green">casual</span>
+        </div>
       </div>
+
+      <div class="modifier-card" data-search="combat pvp player vs player">
+        <div class="modifier-name">PvP</div>
+        <div class="modifier-desc">Toggle player-vs-player damage on or off globally.</div>
+        <div class="modifier-command">
+          <span>setkey PVP &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey PVP ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag blue">true</span>
+          <span class="value-tag">false</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <div class="card">
-    <h2>Categorized Reference</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Category</th>
-          <th>Effect</th>
-          <th>Enable (Set)</th>
-          <th>Disable (Remove)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Crafting/Building</strong></td>
-          <td>Free crafting (no materials)</td>
-          <td><code class="k">setkey NoCraftCost true</code></td>
-          <td><code class="k">removekey NoCraftCost</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Free build/repair</td>
-          <td><code class="k">setkey NoBuildCost true</code></td>
-          <td><code class="k">removekey NoBuildCost</code></td>
-        </tr>
-        <tr>
-          <td><strong>Player</strong></td>
-          <td>Infinite stamina</td>
-          <td><code class="k">setkey StaminaRate 0</code></td>
-          <td><code class="k">removekey StaminaRate</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Double carry weight</td>
-          <td><code class="k">setkey CarryWeight 2</code></td>
-          <td><code class="k">removekey CarryWeight</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Disable auto-pickup</td>
-          <td><code class="k">setkey NoAutoPickup true</code></td>
-          <td><code class="k">removekey NoAutoPickup</code></td>
-        </tr>
-        <tr>
-          <td><strong>Combat</strong></td>
-          <td>Passive enemies (won't attack first)</td>
-          <td><code class="k">setkey PassiveMobs true</code></td>
-          <td><code class="k">removekey PassiveMobs</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Disable raids/events</td>
-          <td><code class="k">setkey NoRaids true</code></td>
-          <td><code class="k">removekey NoRaids</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Harder combat</td>
-          <td><code class="k">setkey CombatDifficulty Hard</code></td>
-          <td><code class="k">removekey CombatDifficulty</code></td>
-        </tr>
-        <tr>
-          <td><strong>World/Exploration</strong></td>
-          <td>Reveal full map</td>
-          <td><code class="k">setkey ExploreMap true</code></td>
-          <td><code class="k">removekey ExploreMap</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>No minimap</td>
-          <td><code class="k">setkey NoMiniMap true</code></td>
-          <td><code class="k">removekey NoMiniMap</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>No map at all</td>
-          <td><code class="k">setkey NoMap true</code></td>
-          <td><code class="k">removekey NoMap</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Disable portals</td>
-          <td><code class="k">setkey NoPortals true</code></td>
-          <td><code class="k">removekey NoPortals</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Allow everything through portals</td>
-          <td><code class="k">setkey FreePortals true</code></td>
-          <td><code class="k">removekey FreePortals</code></td>
-        </tr>
-        <tr>
-          <td><strong>Skills</strong></td>
-          <td>Fast skill gain</td>
-          <td><code class="k">setkey SkillGain Fast</code></td>
-          <td><code class="k">removekey SkillGain</code></td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>Very fast skill gain</td>
-          <td><code class="k">setkey SkillGain VeryFast</code></td>
-          <td><code class="k">removekey SkillGain</code></td>
-        </tr>
-      </tbody>
-    </table>
-    <p class="small">Note: Keys are world-specific. Availability/behavior can vary with game version or mods. Use <code>listkeys</code> to inspect what's currently active.</p>
+  <!-- ENEMIES -->
+  <div class="category reveal" data-category="enemies">
+    <div class="category-header">
+      <span class="category-icon">👹</span>
+      <span class="category-title">Enemies & Raids</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
+
+      <div class="modifier-card" data-search="enemies speed level enemylevel">
+        <div class="modifier-name">Enemy Level</div>
+        <div class="modifier-desc">Set the level scaling of spawned enemies.</div>
+        <div class="modifier-command">
+          <span>setkey EnemyLevel &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey EnemyLevel ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">veryhard</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">easy</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="enemies raids disable nodeath noenemies">
+        <div class="modifier-name">No Raids</div>
+        <div class="modifier-desc">Disable enemy raid events entirely on this world.</div>
+        <div class="modifier-command">
+          <span>setkey noraids</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey noraids')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag green">No more raids!</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="enemies portals no portal disable teleport">
+        <div class="modifier-name">Passive Enemies</div>
+        <div class="modifier-desc">Make all enemies passive — they will not attack unless attacked first.</div>
+        <div class="modifier-command">
+          <span>setkey passivemobs</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey passivemobs')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag green">Peaceful mode</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="enemies spawn no nospawnzone enemy">
+        <div class="modifier-name">No Mob Spawn Zone</div>
+        <div class="modifier-desc">Prevents enemies from spawning within a set radius of your spawn point.</div>
+        <div class="modifier-command">
+          <span>setkey nospawn</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey nospawn')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag green">Safe base!</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <div class="card">
-    <h2>🔑 Dev Commands for Loot Modifiers (World Keys)</h2>
-    <table>
-      <thead><tr><th>Command</th><th>Effect</th></tr></thead>
-      <tbody>
-        <tr><td><code class="k">setkey LootDrop 0</code></td><td>Default loot drop rate (100%).</td></tr>
-        <tr><td><code class="k">setkey LootDrop 1</code></td><td>Double loot (200%).</td></tr>
-        <tr><td><code class="k">setkey LootDrop 2</code></td><td>Triple loot (300%).</td></tr>
-        <tr><td><code class="k">setkey LootDrop 3</code></td><td>Quadruple loot (400%).</td></tr>
-        <tr><td><code class="k">resetkeys LootDrop</code></td><td>Resets to default loot modifier.</td></tr>
-        <tr><td><code class="k">getkey LootDrop</code></td><td>Shows current loot drop setting.</td></tr>
-      </tbody>
-    </table>
+  <!-- RESOURCES -->
+  <div class="category reveal" data-category="resources">
+    <div class="category-header">
+      <span class="category-icon">🪵</span>
+      <span class="category-title">Resources & Crafting</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
 
-    <h2>📋 Example Usage</h2>
-    <div class="cmd"><pre>setkey LootDrop 2
+      <div class="modifier-card" data-search="resources crafting rate gather material">
+        <div class="modifier-name">Resource Rate</div>
+        <div class="modifier-desc">Multiply how many resources you gather from nodes and drops.</div>
+        <div class="modifier-command">
+          <span>setkey ResourceRate &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey ResourceRate ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">muchless</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">more</span>
+          <span class="value-tag green">muchmore</span>
+        </div>
+      </div>
 
-➡ All creatures drop triple loot.</pre></div>
-    <div class="cmd"><pre>resetkeys LootDrop
+      <div class="modifier-card" data-search="crafting stations require station">
+        <div class="modifier-name">Crafting Stations</div>
+        <div class="modifier-desc">Toggle whether crafting near a workbench or station is required.</div>
+        <div class="modifier-command">
+          <span>setkey NoCraftingStationRequired</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey NoCraftingStationRequired')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag green">Craft anywhere</span>
+        </div>
+      </div>
 
-➡ Back to normal loot rate.</pre></div>
+      <div class="modifier-card" data-search="stamina food consumption rate">
+        <div class="modifier-name">Food Consumption</div>
+        <div class="modifier-desc">Change how quickly food buffs drain over time.</div>
+        <div class="modifier-command">
+          <span>setkey FoodDrain &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey FoodDrain ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">veryfast</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">slow</span>
+          <span class="value-tag green">veryslow</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-</main>
+  <!-- WORLD & EXPLORATION -->
+  <div class="category reveal" data-category="world">
+    <div class="category-header">
+      <span class="category-icon">🗺️</span>
+      <span class="category-title">World & Exploration</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
 
+      <div class="modifier-card" data-search="portal teleport no disable portal item">
+        <div class="modifier-name">No Portal Item Restriction</div>
+        <div class="modifier-desc">Allow all items — including ores and metals — through portals.</div>
+        <div class="modifier-command">
+          <span>setkey noportals</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey noportals')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag blue">Removes portals entirely</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="portal teleport item carry metal ore allowportalitems">
+        <div class="modifier-name">Allow Portal Items</div>
+        <div class="modifier-desc">Carry any item through portals, including ores, metals, and eggs.</div>
+        <div class="modifier-command">
+          <span>setkey AllowPortalBypass</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey AllowPortalBypass')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag green">All items allowed</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="map share shared exploration">
+        <div class="modifier-name">Shared Map</div>
+        <div class="modifier-desc">Share explored map progress between all players on the server.</div>
+        <div class="modifier-command">
+          <span>setkey SharedMap</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey SharedMap')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag blue">Multiplayer friendly</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="dungeon instance shared instance dungeon">
+        <div class="modifier-name">Dungeon Instances</div>
+        <div class="modifier-desc">Give each player their own private instance of dungeons instead of sharing.</div>
+        <div class="modifier-command">
+          <span>setkey PlayerInstances</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey PlayerInstances')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag blue">Solo instances</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="category reveal" data-category="skills">
+    <div class="category-header">
+      <span class="category-icon">📈</span>
+      <span class="category-title">Skills & Progression</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
+
+      <div class="modifier-card" data-search="skills rate xp gain skillrate">
+        <div class="modifier-name">Skill Gain Rate</div>
+        <div class="modifier-desc">Adjust how fast skills level up during gameplay.</div>
+        <div class="modifier-command">
+          <span>setkey SkillGain &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey SkillGain ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">muchless</span>
+          <span class="value-tag">normal</span>
+          <span class="value-tag green">more</span>
+          <span class="value-tag green">muchmore</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="skills death loss skill penalty skillpenalty">
+        <div class="modifier-name">Skill Penalty on Death</div>
+        <div class="modifier-desc">Reduce or remove skill point loss when you die.</div>
+        <div class="modifier-command">
+          <span>setkey SkillPenaltyOnDeath &lt;value&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'setkey SkillPenaltyOnDeath ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">normal</span>
+          <span class="value-tag green">half</span>
+          <span class="value-tag green">none</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- UTILITY COMMANDS -->
+  <div class="category reveal" data-category="utility">
+    <div class="category-header">
+      <span class="category-icon">🛠️</span>
+      <span class="category-title">Utility Commands</span>
+      <div class="category-line"></div>
+    </div>
+    <div class="modifier-grid">
+
+      <div class="modifier-card" data-search="utility list keys show active modifiers">
+        <div class="modifier-name">List Active Keys</div>
+        <div class="modifier-desc">Show all currently active world modifier keys in the console.</div>
+        <div class="modifier-command">
+          <span>listkeys</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'listkeys')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag blue">Debug tool</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="utility remove delete key reset modifier removekey">
+        <div class="modifier-name">Remove Key</div>
+        <div class="modifier-desc">Remove a specific world modifier key to revert it to default.</div>
+        <div class="modifier-command">
+          <span>removekey &lt;keyname&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'removekey ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">Resets modifier</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="utility reset all keys clear world modifiers">
+        <div class="modifier-name">Reset All Keys</div>
+        <div class="modifier-desc">Remove all custom world modifier keys and reset to default world settings.</div>
+        <div class="modifier-command">
+          <span>resetkeys</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'resetkeys')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag red">Resets everything!</span>
+        </div>
+      </div>
+
+      <div class="modifier-card" data-search="utility time day night skip tod">
+        <div class="modifier-name">Set Time of Day</div>
+        <div class="modifier-desc">Set the time of day. 0 = midnight, 0.5 = midday.</div>
+        <div class="modifier-command">
+          <span>tod &lt;0–1&gt;</span>
+          <button class="copy-btn" onclick="copyCmd(this, 'tod ')">Copy</button>
+        </div>
+        <div class="modifier-values">
+          <span class="value-tag">tod 0.5 = noon</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
 <footer>
-  <p>Made for quick in-game copy/paste. Keep this page open on a second monitor. <span class="pill">F5</span> opens the console in Valheim.</p>
+  <a href="https://www.nort-sun.com" class="nav-logo">
+    <img src="https://raw.githubusercontent.com/Stradios/Nort-sun-esentials/refs/heads/main/Nort-sun%20images/NORT-SUN_Soluppgngbakomberggno512x512.svg" alt="Nort-Sun Logo" style="width:28px;height:28px;border-radius:4px;">
+    <span class="nav-logo-text">NORT<span style="color:var(--sun);">-</span>SUN</span>
+  </a>
+  <div>© 2024 Nort-Sun Gaming Community. Valheim Cheatsheet.</div>
+  <div>
+    <a href="https://stradios.github.io/valheim-world-modifiers-cheatsheet.github.io/">Cheatsheet</a>
+    &nbsp;·&nbsp;
+    <a href="https://www.nort-sun.com">www.nort-sun.com</a>
+  </div>
 </footer>
 
 <script>
-  document.querySelectorAll('[data-copy]').forEach(btn => {
-    btn.addEventListener('click', async () => {
-      const text = btn.getAttribute('data-copy');
-      try {
-        await navigator.clipboard.writeText(text);
-        const old = btn.textContent;
-        btn.textContent = 'Copied!';
-        setTimeout(()=>btn.textContent = old, 1200);
-      } catch (e) {
-        alert('Could not copy to clipboard. You can copy manually.');
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
       }
+    });
+  }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+  reveals.forEach((el, i) => {
+    el.style.transitionDelay = (i % 4) * 0.07 + 's';
+    observer.observe(el);
+  });
+
+  // Parallax sun glow
+  const glow = document.querySelector('.hero-sun-glow');
+  document.addEventListener('mousemove', (e) => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    if (glow) glow.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`;
+  });
+
+  // Copy button
+  function copyCmd(btn, cmd) {
+    navigator.clipboard.writeText(cmd).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy';
+        btn.classList.remove('copied');
+      }, 1800);
+    });
+  }
+
+  // Search filter
+  const searchInput = document.getElementById('searchInput');
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    document.querySelectorAll('.modifier-card').forEach(card => {
+      const text = (card.dataset.search + ' ' + card.textContent).toLowerCase();
+      card.classList.toggle('hidden', q.length > 0 && !text.includes(q));
+    });
+    // hide empty categories
+    document.querySelectorAll('.category').forEach(cat => {
+      const visible = [...cat.querySelectorAll('.modifier-card')].some(c => !c.classList.contains('hidden'));
+      cat.classList.toggle('empty', !visible);
     });
   });
 </script>
